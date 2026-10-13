@@ -17,7 +17,7 @@ export default function Game() {
         .then( async (json)=>{
             // console.log('json', json)
             const data = await json.json()
-            console.log('data', data)
+            // console.log('data', data)
             setGameData(data)
         } )
         .catch(console.warn)
