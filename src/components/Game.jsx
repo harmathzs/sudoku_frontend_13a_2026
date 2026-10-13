@@ -10,10 +10,8 @@ export default function Game() {
         toast.success('You have won! :D ')
     }
 
-    useEffect(()=>{
-        // useEffect callback az NEM lehet async !!! 
-        // TODO - base url?
-        fetch(`/api/sudoku`)
+    const getSudokuData = (difficulty) => {
+        fetch(`/api/sudoku?difficulty=${difficulty}`)
         .then( async (json)=>{
             // console.log('json', json)
             const data = await json.json()
@@ -22,10 +20,30 @@ export default function Game() {
         } )
         .catch(console.warn)
         .finally( ()=>{} )
+    }
+
+    useEffect(()=>{
+        // useEffect callback az NEM lehet async !!! 
+        // TODO - base url?
+        getSudokuData("medium")
     }, [])
+
+    const handleSelectDifficulty = (e)=>{
+        // console.log('handleSelectDifficulty e', e)
+        const newDifficulty = e.target?.value
+        getSudokuData(newDifficulty)
+    }
 
     return <div>
         {/* gameData json: {JSON.stringify(gameData)}</p> */}
+        <div>
+            <label htmlFor="difficulty">Difficulty: </label>
+            <select defaultValue="medium" name="difficulty" onChange={handleSelectDifficulty}>
+                <option value="easy">easy</option>
+                <option value="medium">medium</option>
+                <option value="hard">hard</option>
+            </select>
+        </div>
         <Board onWin={handleWin}>{gameData}</Board>
         <ToastContainer
             position="top-center"
