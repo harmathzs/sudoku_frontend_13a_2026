@@ -1,7 +1,8 @@
 import Tile from "./Tile";
 
-import './Board.css';
 import { useState } from "react";
+
+import './Board.css';
 
 export default function Board({children = {} }) {
     // console.log('Board props', props) // props.children.puzzle, props.children.solution
@@ -10,12 +11,35 @@ export default function Board({children = {} }) {
     console.log('puzzle', puzzle)
     console.log('solution', solution)
 
-    const [currentBoard, setCurrentBoard] = useState(Array.from({length: 9}, (val, key)=>[]))
+    const [currentBoard, setCurrentBoard] = useState(Array.from({length: 9}, (val, key)=>[]))  
 
     const checkWin = (board)=>{
         console.log('board', board)
 
-        if (board == solution) {
+        let numbersDiff = false;
+        let matches = 0
+        // "Merge" board with puzzle, check with solution
+        board.forEach( (boardRow, rowIdx) => {
+            boardRow.forEach( (boardCellValue, colIdx) => {
+                if (boardCellValue == solution[rowIdx][colIdx]) {
+                    // még mindig marad false
+                    matches++;
+                } else {
+                    numbersDiff = true;
+                }
+            } )
+        } )
+        console.log('matches', matches)
+
+        let puzzleNulls = 0
+        puzzle.forEach( (puzzleRow, rowIdx) => {
+            puzzleRow.forEach( (puzzleCellValue, colIdx) => {
+                if (!puzzleCellValue) puzzleNulls++;
+            } )
+        } )
+        console.log('puzzleNulls', puzzleNulls)
+
+        if (!numbersDiff && matches == puzzleNulls) {
             console.log('Gamer has won! :D ')
         }
     }
