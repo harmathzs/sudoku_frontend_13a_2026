@@ -11,6 +11,15 @@ export default function Board({children = {} }) {
     console.log('solution', solution)
 
     const [currentBoard, setCurrentBoard] = useState(Array.from({length: 9}, (val, key)=>[]))
+
+    const checkWin = (board)=>{
+        console.log('board', board)
+
+        if (board == solution) {
+            console.log('Gamer has won! :D ')
+        }
+    }
+
     const handleTileValueChange = (newNumber, rowIdx, colIdx) => {
         // TODO
         console.log('handleTileValueChange newNumber, rowIdx, colIdx', newNumber, rowIdx, colIdx)
@@ -18,6 +27,7 @@ export default function Board({children = {} }) {
         setCurrentBoard( (prev)=>{
             const newBoard = prev.slice()
             newBoard[rowIdx][colIdx] = newNumber
+            checkWin(newBoard)
             return newBoard
         } )
     }
