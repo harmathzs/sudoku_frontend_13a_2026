@@ -13,7 +13,7 @@ export default function Game() {
     useEffect(()=>{
         // useEffect callback az NEM lehet async !!! 
         // TODO - base url?
-        fetch(`http://localhost:8080/sudoku`)
+        fetch(`/api/sudoku`)
         .then( async (json)=>{
             // console.log('json', json)
             const data = await json.json()
