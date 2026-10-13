@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import './Board.css';
 
-export default function Board({children = {} }) {
+export default function Board({children = {}, onWin }) {
     // console.log('Board props', props) // props.children.puzzle, props.children.solution
     // console.log('Board children', children)
     const {puzzle = [], solution = []} = children
@@ -41,6 +41,7 @@ export default function Board({children = {} }) {
 
         if (!numbersDiff && matches == puzzleNulls) {
             console.log('Gamer has won! :D ')
+            onWin()
         }
     }
 

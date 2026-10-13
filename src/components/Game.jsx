@@ -4,6 +4,10 @@ import Board from "./Board";
 export default function Game() {
     const [gameData, setGameData] = useState({})
 
+    const handleWin = ()=>{
+        console.log('handleWin start')
+    }
+
     useEffect(()=>{
         // useEffect callback az NEM lehet async !!! 
         // TODO - base url?
@@ -20,6 +24,6 @@ export default function Game() {
 
     return <div>
         {/* gameData json: {JSON.stringify(gameData)}</p> */}
-        <Board>{gameData}</Board>
+        <Board onWin={handleWin}>{gameData}</Board>
     </div>
 }
