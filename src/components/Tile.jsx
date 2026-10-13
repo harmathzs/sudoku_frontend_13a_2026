@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Tile.css';
 
-export default function Tile({value = 0}) {
+export default function Tile({value = 0, rowidx = 0, colidx = 0, ontilevaluechange}) {
     const [newNumber, setNewNumber] = useState(0)
 
     const handleInputNumberChange = (e) => {
@@ -11,6 +11,7 @@ export default function Tile({value = 0}) {
         if (newNumber>9) newNumber = 9;
         console.log('newNumber', newNumber)
         setNewNumber(newNumber)
+        ontilevaluechange(newNumber, rowidx, colidx)
     }
 
     return <div className='tile'>
