@@ -6,8 +6,8 @@ export default function Board() {
     return <div className="board">
         <div className="row">
             <Tile />
-            <Tile />
-            <Tile />
+            <Tile value={2} />
+            <Tile value={null} />
             <Tile />
             <Tile />
             <Tile />

@@ -1,7 +1,7 @@
 import './Tile.css';
 
-export default function Tile() {
+export default function Tile({value = 1}) {
     return <div className='tile'>
-        1
+        {value}
     </div>
 }
