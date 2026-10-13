@@ -9,7 +9,7 @@ export default function Board({children = {}, onWin }) {
     // console.log('Board children', children)
     const {puzzle = [], solution = []} = children
     console.log('puzzle', puzzle)
-    console.log('solution', solution)
+    // console.log('solution', solution)
 
     const [currentBoard, setCurrentBoard] = useState(Array.from({length: 9}, (val, key)=>[]))  
 
